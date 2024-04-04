@@ -21,9 +21,7 @@ const initSmoothScrolling = () => {
   requestAnimationFrame(scrollFn);
 };
 
-const type11 = [
-  ...document.querySelectorAll(".content__title[data-splitting][data-effect11]")
-];
+
 
 const type1 = [...document.querySelectorAll("[data-splitting][data-effect1]")];
 
@@ -46,7 +44,9 @@ const type9 = [...document.querySelectorAll("[data-splitting][data-effect9]")];
 const type10 = [
   ...document.querySelectorAll("[data-splitting][data-effect10]")
 ];
-
+const type11 = [
+  ...document.querySelectorAll("[data-splitting][data-effect11]")
+];
 const scroll = () => {
   type1.forEach((title) => {
     gsap.fromTo(
@@ -86,42 +86,8 @@ const scroll = () => {
       }
     );
   });
+  
 
-type11.forEach((title) => {
-    const words = title.querySelectorAll(".word");
-
-    for (const word of words) {
-      const chars = word.querySelectorAll(".char");
-
-      chars.forEach((char) => gsap.set(char.parentNode, { perspective: 2000 }));
-
-      gsap.fromTo(
-        chars,
-        {
-          "will-change": "opacity, transform",
-          opacity: 0,
-          rotationX: -90,
-          yPercent: 50
-        },
-        {
-          ease: "power1.inOut",
-          opacity: 1,
-          rotationX: 0,
-          yPercent: 0,
-          stagger: {
-            each: 0.03,
-            from: 0
-          },
-          scrollTrigger: {
-            trigger: word,
-            start: "center bottom+=40%",
-            end: "bottom center-=30%",
-            scrub: 0.9
-          }
-        }
-      );
-    }
-  });
 
   type2.forEach((title) => {
     const chars = title.querySelectorAll(".char");
@@ -450,6 +416,42 @@ type11.forEach((title) => {
       }
     );
   });
+  type11.forEach((title) => {
+    const words = title.querySelectorAll(".word");
+
+    for (const word of words) {
+      const chars = word.querySelectorAll(".char");
+
+      chars.forEach((char) => gsap.set(char.parentNode, { perspective: 2000 }));
+
+      gsap.fromTo(
+        chars,
+        {
+          "will-change": "opacity, transform",
+          opacity: 0,
+          rotationX: -90,
+          yPercent: 50
+        },
+        {
+          ease: "power1.inOut",
+          opacity: 1,
+          rotationX: 0,
+          yPercent: 0,
+          stagger: {
+            each: 0.03,
+            from: 0
+          },
+          scrollTrigger: {
+            trigger: word,
+            start: "center bottom+=40%",
+            end: "bottom center-=30%",
+            scrub: 0.9
+          }
+        }
+      );
+    }
+  });
+C
 };
 
 initSmoothScrolling();
