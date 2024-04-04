@@ -21,6 +21,10 @@ const initSmoothScrolling = () => {
   requestAnimationFrame(scrollFn);
 };
 
+const type11 = [
+  ...document.querySelectorAll(".content__title[data-splitting][data-effect11]")
+];
+
 const type1 = [...document.querySelectorAll("[data-splitting][data-effect1]")];
 
 const type2 = [...document.querySelectorAll("[data-splitting][data-effect2]")];
@@ -81,6 +85,42 @@ const scroll = () => {
         }
       }
     );
+  });
+
+type11.forEach((title) => {
+    const words = title.querySelectorAll(".word");
+
+    for (const word of words) {
+      const chars = word.querySelectorAll(".char");
+
+      chars.forEach((char) => gsap.set(char.parentNode, { perspective: 2000 }));
+
+      gsap.fromTo(
+        chars,
+        {
+          "will-change": "opacity, transform",
+          opacity: 0,
+          rotationX: -90,
+          yPercent: 50
+        },
+        {
+          ease: "power1.inOut",
+          opacity: 1,
+          rotationX: 0,
+          yPercent: 0,
+          stagger: {
+            each: 0.03,
+            from: 0
+          },
+          scrollTrigger: {
+            trigger: word,
+            start: "center bottom+=40%",
+            end: "bottom center-=30%",
+            scrub: 0.9
+          }
+        }
+      );
+    }
   });
 
   type2.forEach((title) => {
